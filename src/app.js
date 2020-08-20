@@ -105,6 +105,7 @@ app.post("/repositories/:id/like", (request, response) => {
 
   repositories[repositoryIndex] = newRespository;
 
+
   return response.json({likes:newRespository.likes});
 
 });
