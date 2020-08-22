@@ -25,9 +25,9 @@ function logRequests(request, response, next) {
 function validateId(request, response, next) {
   const {id} = request.params
 
-  if (!isUuid(id)) {
+  /* if (!isUuid(id)) {
     return response.status(400).json({error: 'Invalid repository ID.'})
-  }
+  } */
 
   return next()
 }
@@ -40,10 +40,10 @@ app.get("/repositories", (request, response) => {
 });
 
 app.post("/repositories", (request, response) => {
-  const {title, url, techs} = request.body
+  const {title, url, techs, id} = request.body
 
   const newRepositorie = {
-    'id': uuid(),
+    'id': id && id.trim().length > 0 ? id : uuid(),
     'title':title,
     'url': url,
     'techs': techs,
